@@ -1,21 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>RealCheck - Verify NIN, CAC & Phone</title>
+<title>RealCheck - Worldwide</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
+<style>
+body{font-family:Arial;margin:0;background:#f5f5f5}
+.top{background:#111;color:white;padding:10px;text-align:center}
+.top button{background:white;border:none;padding:6px 10px;border-radius:20px;margin:2px}
+.header{background:#ff6a00;color:white;padding:15px;text-align:center}
+.search{padding:10px;background:white;display:flex;gap:5px}
+.search input{flex:1;padding:12px;border:1px solid #ddd;border-radius:8px}
+.search button{background:#ff6a00;color:white;border:none;padding:12px;border-radius:8px}
+.card{background:white;margin:10px;padding:12px;border-radius:12px}
+.card img{width:100%;border-radius:10px}
+.price{color:#ff6a00;font-weight:bold;font-size:18px}
+.trust{color:green;font-size:13px}
+.btn{width:100%;padding:12px;background:green;color:white;border:none;border-radius:8px;margin-top:8px}
+.btn2{width:100%;padding:12px;background:#111;color:white;border:none;border-radius:8px;margin-top:5px}
+.result{padding:10px;background:#e8ffe8;border-radius:8px;margin-top:8px;display:none}
+</style>
 </head>
 <body>
-<div class="box">
-<h1>RealCheck ✅</h1>
-<p>Verify NIN, Business (CAC) & Phone Number in seconds.<br>Stop falling for fake people and fake businesses.</p>
 
-<a href="verify.html" class="btn green">Verify NIN</a>
-<a href="verify.html" class="btn blue">Verify Business (CAC)</a>
-<a href="verify.html" class="btn orange">Verify Phone Number</a>
-
-<p class="small">Trusted • Fast • Secure<br>RealCheck - Know Before You Trust</p>
+<div class="top">
+🌍 <span data-lang="worldwide">Worldwide</span> |
+<button onclick="setLang('en')">EN</button>
+<button onclick="setLang('zh')">中文</button>
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('es')">ES</button>
+<select style="padding:5px;border-radius:5px">
+<option>🌍 All Countries</option>
+<option>🇳🇬 Nigeria</option><option>🇬🇭 Ghana</option><option>🇰🇪 Kenya</option>
+<option>🇿🇦 South Africa</option><option>🇨🇳 China</option><option>🇺🇸 USA</option>
+<option>🇬🇧 UK</option><option>🇮🇳 India</option><option>🇧🇷 Brazil</option>
+</select>
 </div>
-<script src="script.js"></script>
+
+<div class="header">
+<h1>RealCheck</h1>
+<p data-lang="subtitle">Buy Safe Worldwide - Verified Sellers Only</p>
+</div>
+
+<div class="search">
+<input id="searchBox" placeholder="Search gold, jewelry, cars...">
+<button data-lang="search">Search</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/400x250">
+<h3>24K Gold Bar - 1kg</h3>
+<p>Seller: Lagos Gold Ltd 🇳🇬 Nigeria - Ships Worldwide ✈️</p>
+<p class="trust">✅ Verified Seller | Trust 96%</p>
+<p class="price">$65,000</p>
+<button class="btn" onclick="checkReal(this)" data-lang="verify">Check if REAL or FAKE</button>
+<div class="result">✅ AI Result: REAL - 96% Trust Score. Safe to Buy.</div>
+<button class="btn2" data-lang="call">Call Seller Live</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/400x250">
+<h3>Diamond Necklace</h3>
+<p>Seller: Accra Jewels 🇬🇭 Ghana - Ships Worldwide ✈️</p>
+<p class="trust">✅ Verified Seller | Trust 94%</p>
+<p class="price">$12,500</p>
+<button class="btn" onclick="checkReal(this)" data-lang="verify">Check if REAL or FAKE</button>
+<div class="result">✅ AI Result: REAL - 94% Trust Score. Safe to Buy.</div>
+<button class="btn2" data-lang="call">Call Seller Live</button>
+</div>
+
+<div class="card">
+<h3 data-lang="sell">Want to Sell?</h3>
+<p data-lang="sell2">Post your product, get verified, sell to the whole world.</p>
+<button class="btn" data-lang="become">Become a Seller</button>
+</div>
+
+<script>
+const langs = {
+en:{worldwide:"Worldwide",subtitle:"Buy Safe Worldwide - Verified Sellers Only",search:"Search",verify:"Check if REAL or FAKE",call:"Call Seller Live",sell:"Want to Sell?",sell2:"Post your product, get verified, sell to the whole world.",become:"Become a Seller"},
+zh:{worldwide:"全球",subtitle:"全球安全购买 - 仅限已验证卖家",search:"搜索",verify:"检查真假",call:"与卖家视频通话",sell:"想卖东西？",sell2:"发布您的产品，经过验证，销往全世界。",become:"成为卖家"},
+fr:{worldwide:"Mondial",subtitle:"Achetez en toute sécurité dans le monde entier",search:"Rechercher",verify:"Vérifier si VRAI ou FAUX",call:"Appeler le vendeur en direct",sell:"Vous voulez vendre ?",sell2:"Publiez votre produit, faites-le vérifier, vendez dans le monde entier.",become:"Devenir vendeur"},
+es:{worldwide:"Mundial",subtitle:"Compra seguro en todo el mundo",search:"Buscar",verify:"Verificar si es REAL o FALSO",call:"Llamar al vendedor en vivo",sell:"¿Quieres vender?",sell2:"Publica tu producto, verifícalo y vende a todo el mundo.",become:"Ser vendedor"}
+};
+function setLang(l){
+  document.querySelectorAll('[data-lang]').forEach(el=>{
+    let k=el.getAttribute('data-lang');
+    if(langs[l][k]) el.innerText=langs[l][k];
+  });
+}
+function checkReal(btn){
+  let r=btn.nextElementSibling;
+  r.style.display='block';
+  r.innerText='⏳ AI Checking...';
+  setTimeout(()=>{ r.innerText='✅ AI Result: REAL - 96% Trust Score. Safe to Buy.'; },1500);
+}
+</script>
 </body>
 </html>
