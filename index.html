@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>RealCheck - Worldwide</title>
+<title>RealCheck - Buy Safe Worldwide</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{font-family:Arial;margin:0;background:#f5f5f5}
@@ -11,13 +11,11 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 .search{padding:10px;background:white;display:flex;gap:5px}
 .search input{flex:1;padding:12px;border:1px solid #ddd;border-radius:8px}
 .search button{background:#ff6a00;color:white;border:none;padding:12px;border-radius:8px}
-.card{background:white;margin:10px;padding:12px;border-radius:12px}
-.card img{width:100%;border-radius:10px}
+.card{background:white;margin:10px;padding:15px;border-radius:12px}
 .price{color:#ff6a00;font-weight:bold;font-size:18px}
-.trust{color:green;font-size:13px}
 .btn{width:100%;padding:12px;background:green;color:white;border:none;border-radius:8px;margin-top:8px}
 .btn2{width:100%;padding:12px;background:#111;color:white;border:none;border-radius:8px;margin-top:5px}
-.result{padding:10px;background:#e8ffe8;border-radius:8px;margin-top:8px;display:none}
+.country-input{width:92%;padding:10px;border-radius:8px;border:1px solid #ddd;margin:10px}
 </style>
 </head>
 <body>
@@ -28,12 +26,8 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 <button onclick="setLang('zh')">中文</button>
 <button onclick="setLang('fr')">FR</button>
 <button onclick="setLang('es')">ES</button>
-<select style="padding:5px;border-radius:5px">
-<option>🌍 All Countries</option>
-<option>🇳🇬 Nigeria</option><option>🇬🇭 Ghana</option><option>🇰🇪 Kenya</option>
-<option>🇿🇦 South Africa</option><option>🇨🇳 China</option><option>🇺🇸 USA</option>
-<option>🇬🇧 UK</option><option>🇮🇳 India</option><option>🇧🇷 Brazil</option>
-</select>
+<button onclick="setLang('ar')">العربية</button>
+<button onclick="setLang('pt')">PT</button>
 </div>
 
 <div class="header">
@@ -41,57 +35,59 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 <p data-lang="subtitle">Buy Safe Worldwide - Verified Sellers Only</p>
 </div>
 
+<input class="country-input" list="allCountries" placeholder="🌍 Type your country - ANY country in the world">
+<datalist id="allCountries">
+<option value="Nigeria"><option value="Ghana"><option value="Kenya"><option value="South Africa">
+<option value="Cameroon"><option value="Senegal"><option value="Ivory Coast"><option value="Egypt">
+<option value="Ethiopia"><option value="Tanzania"><option value="Uganda"><option value="Morocco">
+<option value="Algeria"><option value="China"><option value="India"><option value="Japan">
+<option value="South Korea"><option value="Thailand"><option value="Vietnam"><option value="Indonesia">
+<option value="Philippines"><option value="Malaysia"><option value="Singapore"><option value="Pakistan">
+<option value="Bangladesh"><option value="Nepal"><option value="Sri Lanka"><option value="USA">
+<option value="Canada"><option value="Mexico"><option value="Brazil"><option value="Argentina">
+<option value="Chile"><option value="Colombia"><option value="Peru"><option value="UK">
+<option value="France"><option value="Germany"><option value="Spain"><option value="Italy">
+<option value="Netherlands"><option value="Belgium"><option value="Portugal"><option value="Russia">
+<option value="Ukraine"><option value="Turkey"><option value="UAE"><option value="Dubai">
+<option value="Saudi Arabia"><option value="Qatar"><option value="Kuwait"><option value="Israel">
+<option value="Australia"><option value="New Zealand"><option value="Other - Type Any Country">
+</datalist>
+
 <div class="search">
-<input id="searchBox" placeholder="Search gold, jewelry, cars...">
+<input placeholder="Search real products...">
 <button data-lang="search">Search</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/400x250">
-<h3>24K Gold Bar - 1kg</h3>
-<p>Seller: Lagos Gold Ltd 🇳🇬 Nigeria - Ships Worldwide ✈️</p>
-<p class="trust">✅ Verified Seller | Trust 96%</p>
-<p class="price">$65,000</p>
-<button class="btn" onclick="checkReal(this)" data-lang="verify">Check if REAL or FAKE</button>
-<div class="result">✅ AI Result: REAL - 96% Trust Score. Safe to Buy.</div>
-<button class="btn2" data-lang="call">Call Seller Live</button>
+<h3 data-lang="empty">No products yet</h3>
+<p data-lang="empty2">No real seller has posted yet. Be the first seller to post a real verified product worldwide.</p>
+<a href="post-product.html"><button class="btn" data-lang="become">Become a Seller - Post Real Product</button></a>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/400x250">
-<h3>Diamond Necklace</h3>
-<p>Seller: Accra Jewels 🇬🇭 Ghana - Ships Worldwide ✈️</p>
-<p class="trust">✅ Verified Seller | Trust 94%</p>
-<p class="price">$12,500</p>
-<button class="btn" onclick="checkReal(this)" data-lang="verify">Check if REAL or FAKE</button>
-<div class="result">✅ AI Result: REAL - 94% Trust Score. Safe to Buy.</div>
-<button class="btn2" data-lang="call">Call Seller Live</button>
+<h3 data-lang="how">How RealCheck Works Worldwide</h3>
+<p>1. Seller posts real product + real photo/video</p>
+<p>2. AI checks if REAL or FAKE</p>
+<p>3. Buyer calls seller live to confirm</p>
+<p>4. Buyer pays safe - only after verification</p>
 </div>
 
-<div class="card">
-<h3 data-lang="sell">Want to Sell?</h3>
-<p data-lang="sell2">Post your product, get verified, sell to the whole world.</p>
-<button class="btn" data-lang="become">Become a Seller</button>
-</div>
+<p style="text-align:center;padding:20px">RealCheck - Know Before You Trust</p>
 
 <script>
-const langs = {
-en:{worldwide:"Worldwide",subtitle:"Buy Safe Worldwide - Verified Sellers Only",search:"Search",verify:"Check if REAL or FAKE",call:"Call Seller Live",sell:"Want to Sell?",sell2:"Post your product, get verified, sell to the whole world.",become:"Become a Seller"},
-zh:{worldwide:"全球",subtitle:"全球安全购买 - 仅限已验证卖家",search:"搜索",verify:"检查真假",call:"与卖家视频通话",sell:"想卖东西？",sell2:"发布您的产品，经过验证，销往全世界。",become:"成为卖家"},
-fr:{worldwide:"Mondial",subtitle:"Achetez en toute sécurité dans le monde entier",search:"Rechercher",verify:"Vérifier si VRAI ou FAUX",call:"Appeler le vendeur en direct",sell:"Vous voulez vendre ?",sell2:"Publiez votre produit, faites-le vérifier, vendez dans le monde entier.",become:"Devenir vendeur"},
-es:{worldwide:"Mundial",subtitle:"Compra seguro en todo el mundo",search:"Buscar",verify:"Verificar si es REAL o FALSO",call:"Llamar al vendedor en vivo",sell:"¿Quieres vender?",sell2:"Publica tu producto, verifícalo y vende a todo el mundo.",become:"Ser vendedor"}
+const langs={
+en:{worldwide:"Worldwide",subtitle:"Buy Safe Worldwide - Verified Sellers Only",search:"Search",empty:"No products yet",empty2:"No real seller has posted yet. Be the first seller to post a real verified product worldwide.",become:"Become a Seller - Post Real Product",how:"How RealCheck Works Worldwide"},
+zh:{worldwide:"全球",subtitle:"全球安全购买 - 仅限已验证卖家",search:"搜索",empty:"暂无产品",empty2:"还没有真实卖家发布。成为第一个在全球发布真实验证产品的卖家。",become:"成为卖家 - 发布真实产品",how:"RealCheck 全球运作方式"},
+fr:{worldwide:"Mondial",subtitle:"Achetez en toute sécurité dans le monde entier",search:"Rechercher",empty:"Aucun produit pour le moment",empty2:"Aucun vrai vendeur n'a encore publié. Soyez le premier à publier un vrai produit vérifié.",become:"Devenir vendeur - Publier un vrai produit",how:"Comment RealCheck fonctionne dans le monde entier"},
+es:{worldwide:"Mundial",subtitle:"Compra seguro en todo el mundo",search:"Buscar",empty:"Aún no hay productos",empty2:"Ningún vendedor real ha publicado todavía. Sé el primero en publicar un producto real verificado.",become:"Ser vendedor - Publicar producto real",how:"Cómo funciona RealCheck en todo el mundo"},
+ar:{worldwide:"عالمي",subtitle:"اشترِ بأمان في جميع أنحاء العالم",search:"بحث",empty:"لا توجد منتجات بعد",empty2:"لم ينشر أي بائع حقيقي بعد. كن أول بائع ينشر منتجًا حقيقيًا موثقًا.",become:"كن بائعًا - انشر منتجًا حقيقيًا",how:"كيف يعمل RealCheck عالميًا"},
+pt:{worldwide:"Mundial",subtitle:"Compre com segurança em todo o mundo",search:"Pesquisar",empty:"Nenhum produto ainda",empty2:"Nenhum vendedor real publicou ainda. Seja o primeiro a publicar um produto real verificado.",become:"Tornar-se vendedor - Publicar produto real",how:"Como o RealCheck funciona no mundo todo"}
 };
 function setLang(l){
-  document.querySelectorAll('[data-lang]').forEach(el=>{
-    let k=el.getAttribute('data-lang');
-    if(langs[l][k]) el.innerText=langs[l][k];
-  });
-}
-function checkReal(btn){
-  let r=btn.nextElementSibling;
-  r.style.display='block';
-  r.innerText='⏳ AI Checking...';
-  setTimeout(()=>{ r.innerText='✅ AI Result: REAL - 96% Trust Score. Safe to Buy.'; },1500);
+ document.querySelectorAll('[data-lang]').forEach(el=>{
+  let k=el.getAttribute('data-lang');
+  if(langs[l][k]) el.innerText=langs[l][k];
+ });
 }
 </script>
 </body>
