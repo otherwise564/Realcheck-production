@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Verify - RealCheck</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;background:#f4f6f8;margin:0;padding:20px;text-align:center}
+.box{background:white;max-width:500px;margin:auto;padding:25px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
+h1{color:#0a7a42}
+input,select{width:90%;padding:13px;border:1px solid #ddd;border-radius:10px;margin:10px 0}
+button{width:95%;padding:14px;margin:10px 0;border:none;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer;background:#0a7a42;color:white}
+a{color:#0a4d8c;text-decoration:none}
+.result{background:#e8f5e9;padding:15px;border-radius:10px;margin-top:15px;display:none}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>Verify Now</h1>
+<p>Choose what you want to verify</p>
+
+<select id="type">
+<option>Verify NIN</option>
+<option>Verify Business (CAC)</option>
+<option>Verify Phone Number</option>
+</select>
+
+<input id="number" type="text" placeholder="Enter number here...">
+
+<button onclick="check()">Check Now - ₦500</button>
+
+<div id="res" class="result">
+<b>✅ Checking...</b><br>
+<span id="msg">Please wait, connecting to verification...</span>
+</div>
+
+<br><a href="index.html">← Back to Home</a>
+</div>
+
+<script>
+function check(){
+  var n = document.getElementById("number").value;
+  var t = document.getElementById("type").value;
+  if(n==""){alert("Please enter a number first"); return;}
+  document.getElementById("res").style.display="block";
+  document.getElementById("msg").innerText = "You entered: " + n + " for " + t + ". Real verification will connect here soon.";
+}
+</script>
+</body>
+</html>
