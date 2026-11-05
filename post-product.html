@@ -8,15 +8,16 @@ body{font-family:Arial;margin:0;background:#f5f5f5;padding:15px}
 .card{background:white;padding:15px;border-radius:12px}
 input,select,textarea{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;box-sizing:border-box}
 button{width:100%;padding:14px;background:green;color:white;border:none;border-radius:8px;font-weight:bold}
-img{width:100%;border-radius:10px;margin-top:10px}
+img,video{width:100%;border-radius:10px;margin-top:10px}
 .back{background:#111;color:white;padding:10px;border:none;border-radius:8px;width:100%;margin-bottom:10px}
+label{font-weight:bold;font-size:14px}
 </style>
 </head>
 <body>
 <button class="back" onclick="location.href='index.html'">← Back to RealCheck</button>
 <div class="card">
-<h2>Post REAL Product</h2>
-<p>Only real products. Fake products go be removed and seller go be blocked.</p>
+<h2>Post REAL Product - Image + Video</h2>
+<p>Only real products. You MUST upload both image and video to prove say e real.</p>
 
 <input id="seller" placeholder="Your Real Name / Business Name *">
 <input id="phone" placeholder="Your WhatsApp / Phone * e.g +234...">
@@ -31,19 +32,33 @@ img{width:100%;border-radius:10px;margin-top:10px}
 <datalist id="allCountries"><option value="Nigeria"><option value="Ghana"><option value="Kenya"><option value="China"><option value="India"><option value="USA"><option value="UK"><option value="France"><option value="UAE"><option value="Dubai"></datalist>
 <input id="price" type="number" placeholder="Price in USD * e.g 65000">
 <textarea id="desc" placeholder="Real description - weight, purity, documents, etc"></textarea>
-<label>Real Photo of Product *</label>
+
+<label>1. Real Photo * (Must be your own product)</label>
 <input type="file" id="photo" accept="image/*">
-<img id="preview" style="display:none">
+<img id="previewImg" style="display:none">
+
+<label>2. Real Video * (Show product for face, turn am, talk your name + date)</label>
+<input type="file" id="video" accept="video/*">
+<video id="previewVid" controls style="display:none"></video>
+<p style="font-size:13px;color:#666">Video tip: Hold product, talk your name, say date, show all sides. No video = No post.</p>
+
 <button onclick="postProduct()">Post My Real Product → Go Live</button>
 <p id="msg" style="color:green;text-align:center"></p>
 </div>
 
 <script>
-let imgData="";
+let imgData=""; let vidData="";
 document.getElementById('photo').addEventListener('change',e=>{
   let r=new FileReader();
-  r.onload=()=>{imgData=r.result;let p=document.getElementById('preview');p.src=imgData;p.style.display='block';};
+  r.onload=()=>{imgData=r.result;let p=document.getElementById('previewImg');p.src=imgData;p.style.display='block';};
   r.readAsDataURL(e.target.files[0]);
+});
+document.getElementById('video').addEventListener('change',e=>{
+  let file=e.target.files[0];
+  if(file.size > 15*1024*1024){alert('Video too big. Make am less than 15MB. Use short video 20-30 seconds.');return;}
+  let r=new FileReader();
+  r.onload=()=>{vidData=r.result;let v=document.getElementById('previewVid');v.src=vidData;v.style.display='block';};
+  r.readAsDataURL(file);
 });
 function postProduct(){
   let seller=document.getElementById('seller').value.trim();
@@ -54,11 +69,12 @@ function postProduct(){
   let price=document.getElementById('price').value.trim();
   let desc=document.getElementById('desc').value.trim();
   if(!seller||!phone||!name||!country||!price){alert('Please fill all * fields - Real info only');return;}
-  if(!imgData){alert('Please upload REAL photo of your product');return;}
+  if(!imgData){alert('Please upload REAL PHOTO');return;}
+  if(!vidData){alert('Please upload REAL VIDEO - Video na must. No video, no post.');return;}
   let products=JSON.parse(localStorage.getItem('realcheck_products')||'[]');
-  products.push({seller,phone,name,category:cat,country,price,desc,image:imgData,date:new Date().toISOString()});
+  products.push({seller,phone,name,category:cat,country,price,desc,image:imgData,video:vidData,date:new Date().toISOString()});
   localStorage.setItem('realcheck_products',JSON.stringify(products));
-  document.getElementById('msg').innerText='✅ Posted! Your real product is now LIVE on homepage.';
+  document.getElementById('msg').innerText='✅ Posted! Image + Video don go LIVE on homepage.';
   setTimeout(()=>{location.href='index.html';},1500);
 }
 </script>
