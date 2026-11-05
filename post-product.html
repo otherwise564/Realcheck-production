@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Post Real Product - RealCheck</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;margin:0;background:#f5f5f5;padding:15px}
+.card{background:white;padding:15px;border-radius:12px}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;box-sizing:border-box}
+button{width:100%;padding:14px;background:green;color:white;border:none;border-radius:8px;font-weight:bold}
+img{width:100%;border-radius:10px;margin-top:10px}
+.back{background:#111;color:white;padding:10px;border:none;border-radius:8px;width:100%;margin-bottom:10px}
+</style>
+</head>
+<body>
+<button class="back" onclick="location.href='index.html'">← Back to RealCheck</button>
+<div class="card">
+<h2>Post REAL Product</h2>
+<p>Only real products. Fake products go be removed and seller go be blocked.</p>
+
+<input id="seller" placeholder="Your Real Name / Business Name *">
+<input id="phone" placeholder="Your WhatsApp / Phone * e.g +234...">
+<input id="name" placeholder="Product Name * e.g 24K Gold Bar 1kg">
+<select id="category">
+<option value="Gold">Gold</option><option value="Jewelry">Jewelry</option>
+<option value="Cars">Cars</option><option value="Land">Land</option>
+<option value="Phones">Phones</option><option value="Clothes">Clothes</option>
+<option value="Other">Other</option>
+</select>
+<input id="country" placeholder="Your Country - Type ANY country *" list="allCountries">
+<datalist id="allCountries"><option value="Nigeria"><option value="Ghana"><option value="Kenya"><option value="China"><option value="India"><option value="USA"><option value="UK"><option value="France"><option value="UAE"><option value="Dubai"></datalist>
+<input id="price" type="number" placeholder="Price in USD * e.g 65000">
+<textarea id="desc" placeholder="Real description - weight, purity, documents, etc"></textarea>
+<label>Real Photo of Product *</label>
+<input type="file" id="photo" accept="image/*">
+<img id="preview" style="display:none">
+<button onclick="postProduct()">Post My Real Product → Go Live</button>
+<p id="msg" style="color:green;text-align:center"></p>
+</div>
+
+<script>
+let imgData="";
+document.getElementById('photo').addEventListener('change',e=>{
+  let r=new FileReader();
+  r.onload=()=>{imgData=r.result;let p=document.getElementById('preview');p.src=imgData;p.style.display='block';};
+  r.readAsDataURL(e.target.files[0]);
+});
+function postProduct(){
+  let seller=document.getElementById('seller').value.trim();
+  let phone=document.getElementById('phone').value.trim();
+  let name=document.getElementById('name').value.trim();
+  let cat=document.getElementById('category').value;
+  let country=document.getElementById('country').value.trim();
+  let price=document.getElementById('price').value.trim();
+  let desc=document.getElementById('desc').value.trim();
+  if(!seller||!phone||!name||!country||!price){alert('Please fill all * fields - Real info only');return;}
+  if(!imgData){alert('Please upload REAL photo of your product');return;}
+  let products=JSON.parse(localStorage.getItem('realcheck_products')||'[]');
+  products.push({seller,phone,name,category:cat,country,price,desc,image:imgData,date:new Date().toISOString()});
+  localStorage.setItem('realcheck_products',JSON.stringify(products));
+  document.getElementById('msg').innerText='✅ Posted! Your real product is now LIVE on homepage.';
+  setTimeout(()=>{location.href='index.html';},1500);
+}
+</script>
+</body>
+</html>
