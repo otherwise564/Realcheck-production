@@ -12,83 +12,88 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 .search input{flex:1;padding:12px;border:1px solid #ddd;border-radius:8px}
 .search button{background:#ff6a00;color:white;border:none;padding:12px;border-radius:8px}
 .card{background:white;margin:10px;padding:15px;border-radius:12px}
+.card img,.card video{width:100%;border-radius:10px;max-height:300px;object-fit:cover}
+.ad{background:linear-gradient(90deg,#ff6a00,#ff9a00);color:white;margin:10px;padding:15px;border-radius:12px;text-align:center}
+.ad2{background:#fff3cd;border:2px dashed #ff6a00;margin:10px;padding:15px;border-radius:12px}
 .price{color:#ff6a00;font-weight:bold;font-size:18px}
 .btn{width:100%;padding:12px;background:green;color:white;border:none;border-radius:8px;margin-top:8px}
-.btn2{width:100%;padding:12px;background:#111;color:white;border:none;border-radius:8px;margin-top:5px}
+.btnAd{width:100%;padding:12px;background:#ff6a00;color:white;border:none;border-radius:8px;margin-top:8px}
+.btnDark{width:100%;padding:12px;background:#111;color:white;border:none;border-radius:8px;margin-top:5px}
 .country-input{width:92%;padding:10px;border-radius:8px;border:1px solid #ddd;margin:10px}
+.sponsored{background:#ff6a00;color:white;padding:3px 8px;border-radius:20px;font-size:12px}
+.cats{display:flex;gap:8px;overflow:auto;padding:10px}
+.cats span{background:white;padding:8px 12px;border-radius:20px;white-space:nowrap}
+.verifyBox{background:#e8f5e9;margin:10px;padding:15px;border-radius:12px;text-align:center}
 </style>
 </head>
 <body>
 
-<div class="top">
-🌍 <span data-lang="worldwide">Worldwide</span> |
-<button onclick="setLang('en')">EN</button>
-<button onclick="setLang('zh')">中文</button>
-<button onclick="setLang('fr')">FR</button>
-<button onclick="setLang('es')">ES</button>
-<button onclick="setLang('ar')">العربية</button>
-<button onclick="setLang('pt')">PT</button>
-</div>
+<div class="top">🌍 Worldwide |
+<button>EN</button><button>中文</button><button>FR</button><button>ES</button><button>العربية</button></div>
 
-<div class="header">
-<h1>RealCheck</h1>
-<p data-lang="subtitle">Buy Safe Worldwide - Verified Sellers Only</p>
-</div>
+<div class="header"><h1>RealCheck</h1><p>Buy Safe Worldwide - Verified Sellers Only</p></div>
 
-<input class="country-input" list="allCountries" placeholder="🌍 Type your country - ANY country in the world">
-<datalist id="allCountries">
-<option value="Nigeria"><option value="Ghana"><option value="Kenya"><option value="South Africa">
-<option value="Cameroon"><option value="Senegal"><option value="Ivory Coast"><option value="Egypt">
-<option value="Ethiopia"><option value="Tanzania"><option value="Uganda"><option value="Morocco">
-<option value="Algeria"><option value="China"><option value="India"><option value="Japan">
-<option value="South Korea"><option value="Thailand"><option value="Vietnam"><option value="Indonesia">
-<option value="Philippines"><option value="Malaysia"><option value="Singapore"><option value="Pakistan">
-<option value="Bangladesh"><option value="Nepal"><option value="Sri Lanka"><option value="USA">
-<option value="Canada"><option value="Mexico"><option value="Brazil"><option value="Argentina">
-<option value="Chile"><option value="Colombia"><option value="Peru"><option value="UK">
-<option value="France"><option value="Germany"><option value="Spain"><option value="Italy">
-<option value="Netherlands"><option value="Belgium"><option value="Portugal"><option value="Russia">
-<option value="Ukraine"><option value="Turkey"><option value="UAE"><option value="Dubai">
-<option value="Saudi Arabia"><option value="Qatar"><option value="Kuwait"><option value="Israel">
-<option value="Australia"><option value="New Zealand"><option value="Other - Type Any Country">
-</datalist>
+<input class="country-input" id="countryInput" list="allCountries" placeholder="🌍 Type your country - ANY country in the world" oninput="filterProducts()">
+<datalist id="allCountries"><option value="Nigeria"><option value="Ghana"><option value="Kenya"><option value="South Africa"><option value="Cameroon"><option value="China"><option value="India"><option value="Japan"><option value="USA"><option value="Canada"><option value="UK"><option value="France"><option value="Germany"><option value="UAE"><option value="Dubai"><option value="Brazil"><option value="Australia"><option value="Other - Type Any Country"></datalist>
 
-<div class="search">
-<input placeholder="Search real products...">
-<button data-lang="search">Search</button>
-</div>
+<div class="search"><input id="searchInput" placeholder="Search real products..." oninput="filterProducts()"><button onclick="filterProducts()">Search</button></div>
 
-<div class="card">
-<h3 data-lang="empty">No products yet</h3>
-<p data-lang="empty2">No real seller has posted yet. Be the first seller to post a real verified product worldwide.</p>
-<a href="post-product.html"><button class="btn" data-lang="become">Become a Seller - Post Real Product</button></a>
-</div>
+<div class="cats"><span onclick="filterCat('All')">All</span><span onclick="filterCat('Gold')">Gold</span><span onclick="filterCat('Jewelry')">Jewelry</span><span onclick="filterCat('Cars')">Cars</span><span onclick="filterCat('Land')">Land</span><span onclick="filterCat('Phones')">Phones</span><span onclick="filterCat('Clothes')">Clothes</span></div>
 
-<div class="card">
-<h3 data-lang="how">How RealCheck Works Worldwide</h3>
-<p>1. Seller posts real product + real photo/video</p>
-<p>2. AI checks if REAL or FAKE</p>
-<p>3. Buyer calls seller live to confirm</p>
-<p>4. Buyer pays safe - only after verification</p>
-</div>
+<div class="verifyBox"><h3>Verify Anything - Know Before You Trust</h3><p>Quick Check $2 | Standard $5 | Gold Trust $15 - Live Call + Escrow</p><button class="btn" onclick="location.href='verify.html'">Verify Now - $2 / $5 / $15</button></div>
 
+<div class="ad">🔥 ADVERTISE HERE - Reach Buyers Worldwide<br><button class="btnDark" onclick="location.href='advertise.html'">Pay For Ads - Boost Your Product</button><br><small>Banner ₦20,000/week | Sponsored ₦5,000/week | Video ₦10,000/week</small></div>
+
+<div id="sponsoredArea"></div>
+
+<div class="card"><h3>Post Real Product</h3><p>Real seller only. Upload IMAGE + VIDEO. No demo. Your real product go show here after you post.</p><button class="btn" onclick="location.href='post-product.html'">Become a Seller - Post Image + Video</button><button class="btnAd" onclick="location.href='advertise.html'">💰 Pay For Ads - Make Your Product Show First</button></div>
+
+<h3 style="padding-left:10px">Real Products From Real Sellers - Watch Video Before You Buy</h3>
+<div id="productsArea"></div>
+
+<div class="card"><h3>How RealCheck Works Worldwide</h3><p>1. Seller posts REAL product + REAL PHOTO + REAL VIDEO</p><p>2. AI checks if REAL or FAKE + Buyer does live call</p><p>3. Buyer pays safe - Paystack holds money until buyer confirms</p><p>4. Seller wey pay for Ads, im product dey TOP</p></div>
 <p style="text-align:center;padding:20px">RealCheck - Know Before You Trust</p>
 
 <script>
-const langs={
-en:{worldwide:"Worldwide",subtitle:"Buy Safe Worldwide - Verified Sellers Only",search:"Search",empty:"No products yet",empty2:"No real seller has posted yet. Be the first seller to post a real verified product worldwide.",become:"Become a Seller - Post Real Product",how:"How RealCheck Works Worldwide"},
-zh:{worldwide:"全球",subtitle:"全球安全购买 - 仅限已验证卖家",search:"搜索",empty:"暂无产品",empty2:"还没有真实卖家发布。成为第一个在全球发布真实验证产品的卖家。",become:"成为卖家 - 发布真实产品",how:"RealCheck 全球运作方式"},
-fr:{worldwide:"Mondial",subtitle:"Achetez en toute sécurité dans le monde entier",search:"Rechercher",empty:"Aucun produit pour le moment",empty2:"Aucun vrai vendeur n'a encore publié. Soyez le premier à publier un vrai produit vérifié.",become:"Devenir vendeur - Publier un vrai produit",how:"Comment RealCheck fonctionne dans le monde entier"},
-es:{worldwide:"Mundial",subtitle:"Compra seguro en todo el mundo",search:"Buscar",empty:"Aún no hay productos",empty2:"Ningún vendedor real ha publicado todavía. Sé el primero en publicar un producto real verificado.",become:"Ser vendedor - Publicar producto real",how:"Cómo funciona RealCheck en todo el mundo"},
-ar:{worldwide:"عالمي",subtitle:"اشترِ بأمان في جميع أنحاء العالم",search:"بحث",empty:"لا توجد منتجات بعد",empty2:"لم ينشر أي بائع حقيقي بعد. كن أول بائع ينشر منتجًا حقيقيًا موثقًا.",become:"كن بائعًا - انشر منتجًا حقيقيًا",how:"كيف يعمل RealCheck عالميًا"},
-pt:{worldwide:"Mundial",subtitle:"Compre com segurança em todo o mundo",search:"Pesquisar",empty:"Nenhum produto ainda",empty2:"Nenhum vendedor real publicou ainda. Seja o primeiro a publicar um produto real verificado.",become:"Tornar-se vendedor - Publicar produto real",how:"Como o RealCheck funciona no mundo todo"}
-};
-function setLang(l){
- document.querySelectorAll('[data-lang]').forEach(el=>{
-  let k=el.getAttribute('data-lang');
-  if(langs[l][k]) el.innerText=langs[l][k];
- });
+let currentCat='All';
+function getProducts(){ return JSON.parse(localStorage.getItem('realcheck_products')||'[]'); }
+function getAds(){ return JSON.parse(localStorage.getItem('realcheck_ads_approved')||'[]'); }
+
+function showProducts(){
+  let products=getProducts();
+  let search=document.getElementById('searchInput').value.toLowerCase();
+  let country=document.getElementById('countryInput').value.toLowerCase();
+  let filtered=products.filter(p=>{
+    if(currentCat!=='All' && p.category!==currentCat) return false;
+    if(search && !p.name.toLowerCase().includes(search)) return false;
+    if(country && country!=='other - type any country' && !p.country.toLowerCase().includes(country)) return false;
+    return true;
+  });
+  let area=document.getElementById('productsArea');
+  if(filtered.length===0){
+    area.innerHTML='<div class="card"><h3>No products yet</h3><p>No real seller has posted yet in this country / category. Be the first to post a real verified product with Image + Video.</p></div>';
+  } else {
+    area.innerHTML=filtered.map(p=>`<div class="card">
+      ${p.image?`<img src="${p.image}">`:''}
+      ${p.video?`<video src="${p.video}" controls></video>`:''}
+      <h3>${p.name}</h3><p>Seller: ${p.seller} - ${p.country} | ${p.category}</p><p>${p.desc||''}</p>
+      <p style="color:green">✅ Image + Video Uploaded | Live Call Available</p>
+      <p class="price">$${p.price}</p>
+      <button class="btn" onclick="location.href='verify.html'">Verify This Product - $2 / $5 / $15</button>
+      <button class="btnDark" onclick="alert('Call seller: ${p.phone}')">Call Seller Live</button>
+    </div>`).join('');
+  }
+  let ads=getAds();
+  let sArea=document.getElementById('sponsoredArea');
+  if(ads.length===0){
+    sArea.innerHTML='<div class="ad2"><span class="sponsored">★ SPONSORED</span><h3>No Sponsored Product Yet</h3><p>When a seller pays for ads, im product go show here for TOP.</p></div>';
+  } else {
+    sArea.innerHTML=ads.map(a=>`<div class="ad2"><span class="sponsored">★ SPONSORED - PAID AD</span><h3>${a.biz}</h3>${a.img?`<img src="${a.img}" style="width:100%;border-radius:10px">`:''}<p>${a.type}</p></div>`).join('');
+  }
 }
+function filterCat(c){ currentCat=c; showProducts(); }
+function filterProducts(){ showProducts(); }
+showProducts();
 </script>
 </body>
 </html>
